@@ -37,10 +37,25 @@ const styles = theme => ({
     },
 });
 
-const links = ['Что у вас случилось?', 'Какой адрес?', 'Кому нужна помощь?', 'Сколько лет?', 'В сознании?', 'Впорядке?' , 'Нормально дышит?', 'Машина выехала!', 'Уложите его на спину',
-    'Встаньте рядом', '11. Исправить', '12. Исправить', '13. Что писать?', '14. Вдох воздуха', '15. ???', '16???'];
+const links = [
+    'Какой адрес?',
+    'Кому нужна помощь?',
+    'Сколько лет?',
+    'В сознании?',
+    'Впорядке?',
+    'Нормально дышит?',
+    'Машина выехала!',
+    'Уложите его на спину',
+    'Встаньте рядом',
+    '11. Исправить',
+    '12. Исправить',
+    '13. Что писать?',
+    '14. Вдох воздуха',
+    '15. ???',
+    '16???'
+];
 
-function Menu(props) {
+const Menu = (props) => {
     const { classes } = props;
 
     return (
@@ -65,9 +80,11 @@ function Menu(props) {
                 <Divider />
                 <List>
                     {links.map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemText primary={text} />
-                        </ListItem>
+                        <Link color="primary"  key={index} size="large" to={`/main/${index + 1}`}>
+                            <ListItem button>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        </Link>
                     ))}
                 </List>
                 <Divider />

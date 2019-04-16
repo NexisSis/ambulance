@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -11,14 +11,14 @@ const styles = theme => ({
     }
 });
 
-function Main(props){
+const Main = (props) => {
     const { classes } = props;
     return(
         <div className={classes.root}>
             <Menu/>
-            <Information/>
+            <Information id={props.match.params.id} />
         </div>
     );
-}
+};
 
 export default withStyles(styles)(Main);

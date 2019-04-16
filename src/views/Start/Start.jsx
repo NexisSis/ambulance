@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 
-function Start(props) {
+const Start = (props) => {
     const { classes } = props;
 
     return (
@@ -40,7 +40,7 @@ function Start(props) {
                         <div className={classes.heroButtons}>
                             <Grid container spacing={16} justify="center">
                                 <Grid item>
-                                    <Link color="primary" size="large" to='/main'>
+                                    <Link color="primary" size="large" to='/main/1'>
                                         <Button variant="contained" color="primary" size="large">
                                           Начать
                                         </Button>

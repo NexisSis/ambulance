@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SimpleModalWrapped from '../../blocks/Modal/SimpleModalWrapped';
+import SimpleModal from '../../blocks/Modal/SimpleModal';
 import data from '../../data/data';
 
 import { Link } from "react-router-dom";
@@ -47,7 +47,7 @@ const Information = (props) => {
         <main className={classes.content}>
             <div className={classes.toolbar} />
 
-            <SimpleModalWrapped />
+            <SimpleModal />
 
             <div mx="auto" className={classes.heroUnit}>
                 <div className={classes.heroContent}>

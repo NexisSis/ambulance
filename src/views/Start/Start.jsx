@@ -31,7 +31,7 @@ const Start = (props) => {
                 <div className={classes.heroUnit}>
                     <div className={classes.heroContent}>
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Вас приветствует асистент для сердечно-лёгочной реанимации.
+                            Вас приветствует асcистент для сердечно-лёгочной реанимации.
                         </Typography>
                         <Typography variant="h6" align="center" color="textSecondary" paragraph>
                            Тут надо тоже что-то написать, например какое-то краткое описание для чего это нужно, как вариант можно что-то про

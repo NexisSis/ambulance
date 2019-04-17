@@ -12,6 +12,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import data from "../../data/data";
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -37,23 +39,23 @@ const styles = theme => ({
     },
 });
 
-const links = [
-    'Какой адрес?',
-    'Кому нужна помощь?',
-    'Сколько лет?',
-    'В сознании?',
-    'Впорядке?',
-    'Нормально дышит?',
-    'Машина выехала!',
-    'Уложите его на спину',
-    'Встаньте рядом',
-    '11. Исправить',
-    '12. Исправить',
-    '13. Что писать?',
-    '14. Вдох воздуха',
-    '15. ???',
-    '16???'
-];
+// const links = [
+//     'Какой адрес?',
+//     'Кому нужна помощь?',
+//     'Сколько лет?',
+//     'В сознании?',
+//     'Впорядке?',
+//     'Нормально дышит?',
+//     'Машина выехала!',
+//     'Уложите его на спину',
+//     'Встаньте рядом',
+//     '11. Исправить',
+//     '12. Исправить',
+//     '13. Что писать?',
+//     '14. Вдох воздуха',
+//     '15. ???',
+//     '16???'
+// ];
 
 const Menu = (props) => {
     const { classes } = props;
@@ -79,13 +81,16 @@ const Menu = (props) => {
                 <div className={classes.toolbar} />
                 <Divider />
                 <List>
-                    {links.map((text, index) => (
-                        <Link color="primary"  key={index} size="large" to={`/main/${index + 1}`}>
-                            <ListItem button>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        </Link>
-                    ))}
+                    {data.map((text, index) => {
+                        if (text.id >= 1000) return;
+                        return (
+                            <Link color="primary" key={index} size="large" to={`/main/${text.id}`}>
+                                <ListItem button>
+                                    <ListItemText primary={text.title}/>
+                                </ListItem>
+                            </Link>
+                        );
+                    })}
                 </List>
                 <Divider />
                 <Link color="primary" size="large" to='/'>

@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import SimpleModalWrapped from '../../blocks/Modal/SimpleModalWrapped';
+import Button from '@material-ui/core/Button';
+
+import SimpleModal from '../../blocks/Modal/SimpleModal';
+
+import './Information.css';
 
 const styles = theme => ({
     toolbar: theme.mixins.toolbar,
@@ -16,6 +20,21 @@ const styles = theme => ({
     extendedIcon: {
         marginRight: theme.spacing.unit,
     },
+    wrapper: {
+        height: '100%',
+        alignItems: 'center',
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    w100: { width: '100%'},
+    center: {
+        margin: 'auto',
+        display: 'block'
+    },
+    minusTop50: {
+        marginTop:'-50px'
+    }
+
 });
 
 function Information (props){
@@ -25,31 +44,20 @@ function Information (props){
         <main className={classes.content}>
             <div className={classes.toolbar} />
 
-            <SimpleModalWrapped />
+            <SimpleModal />
 
-            <Typography paragraph>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                donec massa sapien faucibus et molestie ac.n
-            </Typography>
-            <Typography paragraph>
-                Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-                facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-                tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-                consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-                vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-                hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-                tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-                nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-                accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-            </Typography>
+            <div className={classes.wrapper}>
+                <Typography className={classes.w100} component="h2" variant="h2" align="center" color="textPrimary">
+                    Скорая. Что у Вас случилось?
+                </Typography>
+                <Typography className={classes.minusTop50} variant="h6" align="center" color="textSecondary" paragraph>
+                    Уточните у сведетеля происшествия что происходит и по какой причине он решил позвонить. И как всегда
+                    немного текста для того, что бы показать, что нужно примерно такое количество текста, что б выглядело ок.
+                </Typography>
+            </div>
+            <Button className={classes.center} variant="contained" color="primary" size="large" align="center">
+                Далее
+            </Button>
         </main>
     );
 }

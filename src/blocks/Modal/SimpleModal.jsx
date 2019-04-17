@@ -1,22 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Fab from '@material-ui/core/Fab';
 import CallMade from '@material-ui/icons/CallMade';
-
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    return {
-        top: `40%`,
-        left: `30%`,
-
-    };
-}
+// import List  from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/List';
+// import ListItemText from '@material-ui/core/List';
+// import Collapse from '@material-ui/core/Collapse';
 
 const styles = theme => ({
     paper: {
@@ -26,6 +18,9 @@ const styles = theme => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing.unit * 4,
         outline: 'none',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%,-50%)'
     },
 });
 
@@ -56,12 +51,9 @@ class SimpleModal extends React.Component {
                     open={this.state.open}
                     onClose={this.handleClose}
                 >
-                    <div style={getModalStyle()} className={classes.paper}>
+                    <div className={classes.paper}>
                         <Typography variant="h6" id="modal-title">
                             Возможные трудности в процессе Т-СЛР и их преодоление:
-                        </Typography>
-                        <Typography variant="subtitle1" id="simple-modal-description">
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
                         </Typography>
                     </div>
                 </Modal>
@@ -70,11 +62,5 @@ class SimpleModal extends React.Component {
     }
 }
 
-SimpleModal.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
-// We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(SimpleModal);
-
-export default SimpleModalWrapped;
+export default withStyles(styles)(SimpleModal);

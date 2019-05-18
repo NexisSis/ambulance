@@ -7,12 +7,15 @@ export default [
     {
         id: 2,
         title: 'Какой адрес?',
-        nextId: 3,
         prevId: 1,
         actionButtom: [
             {
                 title: 'Адрес подтверждён',
-                nextId: 3
+                nextId: 3,
+                func: function () {
+                    console.log({acceptAddress: new Date()});
+                    this.props.dbHandlerAddress({acceptAddress: new Date().toLocaleString("ru")});
+                }
             },
         ],
     },
@@ -20,7 +23,6 @@ export default [
         id: 3,
         title: 'Кому нужна помощь?',
         nextId: 4,
-        prevId: 2,
     },
     {
         id: 4,
@@ -31,15 +33,30 @@ export default [
         actionButtom: [
             {
                 title: 'Ребенок',
-                nextId: 5
+                nextId: 5,
+                func: function() {
+                    console.log({age: "Ребенок"});
+                    this.setState( { needRespiration: true });
+                    this.props.dbHandlerAge({age: "Ребенок"});
+                }
             },
             {
                 title: 'Взрослый',
-                nextId: 5
+                nextId: 5,
+                func: function() {
+                    console.log({age: "Взрослый"});
+                    this.setState({ needRespiration: false });
+                    this.props.dbHandlerAge({age: "Взрослый"});
+                }
             },
             {
                 title: 'Взрослый с асфиксией',
-                nextId: 5
+                nextId: 5,
+                func: function () {
+                    console.log({age: "Взрослый c асфиксией"});
+                    this.setState({needRespiration: true});
+                    this.props.dbHandlerAge({age: "Взрослый с асфиксией"});
+                }
             },
         ],
     },
@@ -64,7 +81,7 @@ export default [
         actionButtom: [
             {
                 title: 'Да',
-                nextId: 0 // что тут?
+                nextId: -1
             },
             {
                 title: 'Нет',
@@ -82,7 +99,7 @@ export default [
         actionButtom: [
             {
                 title: 'Да',
-                nextId: 0 // что тут?
+                nextId: -1
             },
             {
                 title: 'Нет',
@@ -101,11 +118,21 @@ export default [
         actionButtom: [
             {
                 title: 'Только компрессии',
-                nextId: 0 // что тут?
+                nextId: 9,
+                func: function () {
+                    console.log({compressionsType: "Только компрессии" ,compressionTime: new Date()});
+                    this.setState({ needRespiration: false });
+                    this.props.dbHandlerCompression({compressionsType: "Только компрессии" ,compressionTime: new Date().toLocaleString("ru")});
+                }
             },
             {
                 title: 'Компрессии и искусственное дыхание\n',
-                nextId: 9
+                nextId: 9,
+                func: function () {
+                    console.log({compressionsType: 'Компрессии и искусственное дыхание', compressionTime: new Date()});
+                    this.setState({ needRespiration: true });
+                    this.props.dbHandlerCompression({compressionsType: "Компрессии и искусственное дыхание", compressionTime: new Date().toLocaleString("ru")});
+                }
             }
         ],
 
@@ -115,7 +142,6 @@ export default [
         title: 'Уложите его на полу на спину [лицом вверх].',
         notification: 'Оперативно перепроверьте, если есть сомнения в правильном положении пострадавшего',
         nextId: 10,
-        prevId: 8
     },
     {
         id: 10,
@@ -169,7 +195,8 @@ export default [
     {
         id: 16,
         title: 'Снова начинайте давить на грудную клетку.',
-        nextId: 17,
+        nextId: 12,
+        prevId: 15,
         finish: true,
     },
     {
@@ -183,6 +210,20 @@ export default [
     },
 ];
 
-// 1000+ справки
-// спросить про непонятные переходы
-// спросить про то, где поставить метроном и таймер
+// Cделать запись в базу
+// Какой механизм записи выбрать?
+// https://www.html5rocks.com/en/tutorials/offline/storage/
+// Выбор https://www.w3.org/TR/IndexedDB/
+
+// Настроил переходы
+// Добавил таймер
+// Условие выхода из при компресси и исскуственное дыхание, в доке написан цикл без точки выхода
+
+
+
+// Выделить кнопку старт таймера
+// Добавить кнопку выхода
+
+
+// Источники указывать так : [ Цифра ].
+// В конце указать соответсвие. так: [1] WIKI: (автор) "название публикации" (год статьи/либо copywriting)-url "http:google.com" (проверено 18.06.2019)

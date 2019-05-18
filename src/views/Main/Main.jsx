@@ -11,14 +11,26 @@ const styles = theme => ({
     }
 });
 
-const Main = (props) => {
-    const { classes } = props;
-    return(
-        <div className={classes.root}>
-            <Menu/>
-            <Information id={props.match.params.id} />
-        </div>
-    );
+class Main extends React.Component{
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className={classes.root}>
+                <Menu/>
+                <Information id={this.props.match.params.id}
+                     dbHandlerStartTime={this.props.dbHandlerStartTime}
+                     dbHandlerAddress={this.props.dbHandlerAddress}
+                     dbHandlerAge={this.props.dbHandlerAge}
+                     dbHandlerCompression={this.props.dbHandlerCompression}
+                />
+            </div>
+        );
+    }
 };
 
 export default withStyles(styles)(Main);

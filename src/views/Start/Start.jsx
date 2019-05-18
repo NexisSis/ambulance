@@ -21,38 +21,52 @@ const styles = theme => ({
 });
 
 
-const Start = (props) => {
-    const { classes } = props;
+class Start extends React.Component {
+    constructor(props){
+        super(props);
 
-    return (
-        <React.Fragment>
-            <main>
-                {/* Hero unit */}
-                <div className={classes.heroUnit}>
-                    <div className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Вас приветствует асcистент для сердечно-лёгочной реанимации.
-                        </Typography>
-                        <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                           Тут надо тоже что-то написать, например какое-то краткое описание для чего это нужно, как вариант можно что-то про
-                            безопасность, что-то типо, если вы не уверенны, то не стоит. Но вообще этот текст для демонстрации.
-                        </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={16} justify="center">
-                                <Grid item>
-                                    <Link color="primary" size="large" to='/main/1'>
-                                        <Button variant="contained" color="primary" size="large">
-                                          Начать
-                                        </Button>
-                                    </Link>
+    }
+    render () {
+        const {classes} = this.props;
+        return (
+            <>
+                <main>
+                    <div className={classes.heroUnit}>
+                        <div className={classes.heroContent}>
+                            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                                Вас приветствует асcистент для сердечно-лёгочной реанимации.
+                            </Typography>
+                            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                                Тут надо тоже что-то написать, например какое-то краткое описание для чего это нужно, как вариант можно что-то про
+                                безопасность, что-то типо, если вы не уверенны, то не стоит. Но вообще этот текст для демонстрации.
+                            </Typography>
+                            <div className={classes.heroButtons}>
+                                <Grid container spacing={16} justify="center">
+                                    <Grid item>
+                                        <Link color="primary" size="large" to='/main/1'>
+                                            <Button variant="contained" color="primary" size="large" onClick={() => {
+                                                console.log({startTime: new Date()});
+                                                this.props.dbHandlerStartTime({startTime: new Date().toLocaleString("ru")})
+                                            }}>
+                                                Начать
+                                            </Button>
+                                        </Link>
+                                    </Grid>
+                                    <Grid item>
+                                        <Link color="primary" size="large" to='/logs'>
+                                            <Button variant="contained" color="primary" size="large">
+                                                Логи
+                                            </Button>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
-        </React.Fragment>
-    );
+                </main>
+            </>
+        );
+    }
 }
 
 export default withStyles(styles)(Start);

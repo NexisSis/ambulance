@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Fab from '@material-ui/core/Fab';
-import CallMade from '@material-ui/icons/CallMade';
 
 const styles = theme => ({
     paper: {
@@ -16,7 +15,11 @@ const styles = theme => ({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-    }
+    },
+    fabFontSize: {
+        fontSize: 30,
+    },
+
 });
 
 class SimpleModal extends React.Component {
@@ -37,8 +40,8 @@ class SimpleModal extends React.Component {
 
         return (
             <div>
-                <Fab color="primary" onClick={this.handleOpen} aria-label="Call" className={classes.fab}>
-                    <CallMade />
+                <Fab color="primary" onClick={this.handleOpen} aria-label="Call">
+                    <span className={classes.fabFontSize}>?</span>
                 </Fab>
                 <Modal
                     aria-labelledby="simple-modal-title"
@@ -78,8 +81,4 @@ class SimpleModal extends React.Component {
     }
 }
 
-
-// We need an intermediary variable for handling the recursive nesting.
-const SimpleModalWrapped = withStyles(styles)(SimpleModal);
-
-export default SimpleModalWrapped;
+export default withStyles(styles)(SimpleModal);

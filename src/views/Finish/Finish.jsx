@@ -21,37 +21,47 @@ const styles = theme => ({
 });
 
 
-const Finish = (props) => {
-    const { classes } = props;
+class Finish extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-    return (
-        <React.Fragment>
-            <main>
-                {/* Hero unit */}
-                <div className={classes.heroUnit}>
-                    <div className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Вы справились! Поздравляю!
-                        </Typography>
-                        <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                            Вы можете начать сначала, либо пойти домой и попить чай, ибо вы и так уже много сделали. Тоже просто текст.
-                        </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={16} justify="center">
-                                <Grid item>
-                                    <Link color="primary" size="large" to='/'>
-                                        <Button variant="contained" color="primary" size="large">
-                                            Начать сначала
-                                        </Button>
-                                    </Link>
+    componentDidMount() {
+        console.log({finishedTime: new Date()});
+        this.props.dbSaveWithFinishedTime({finishedTime: new Date().toLocaleString("ru")});
+
+    }
+    render () {
+
+        const { classes } = this.props;
+        return (
+            <>
+                <main>
+                    <div className={classes.heroUnit}>
+                        <div className={classes.heroContent}>
+                            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                                Вы справились! Поздравляю!
+                            </Typography>
+                            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                                Вы можете начать сначала, либо пойти домой и попить чай, ибо вы и так уже много сделали. Тоже просто текст.
+                            </Typography>
+                            <div className={classes.heroButtons}>
+                                <Grid container spacing={16} justify="center">
+                                    <Grid item>
+                                        <Link color="primary" size="large" to='/'>
+                                            <Button variant="contained" color="primary" size="large">
+                                                Начать сначала
+                                            </Button>
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
-        </React.Fragment>
-    );
+                </main>
+            </>
+        );
+    }
 }
 
 export default withStyles(styles)(Finish);

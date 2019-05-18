@@ -13,6 +13,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import data from "../../data/data";
+import Metronom from "../Metronom/Metronom";
+import Stopwatch from "../Stopwatch/Stopwatch";
 
 const drawerWidth = 240;
 
@@ -37,70 +39,70 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing.unit * 3,
     },
+    center: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    headerContainer: {
+        display: 'flex',
+        width: '250px',
+        justifyContent: 'space-between',
+        marginLeft: '15px',
+    },
+    tollbarHeight: {
+        minHeight: '85px'
+    }
 });
 
-// const links = [
-//     'Какой адрес?',
-//     'Кому нужна помощь?',
-//     'Сколько лет?',
-//     'В сознании?',
-//     'Впорядке?',
-//     'Нормально дышит?',
-//     'Машина выехала!',
-//     'Уложите его на спину',
-//     'Встаньте рядом',
-//     '11. Исправить',
-//     '12. Исправить',
-//     '13. Что писать?',
-//     '14. Вдох воздуха',
-//     '15. ???',
-//     '16???'
-// ];
+class Menu extends React.Component {
+    render() {
+        const { classes } = this.props;
+        return (
+            <>
+                <CssBaseline/>
+                <AppBar position="fixed" className={classes.appBar}>
+                    <Toolbar className={classes.tollbarHeight}>
+                        <Typography variant="h6" color="inherit" noWrap>
+                            Сердечно легочная реанимация
+                        </Typography>
+                        <Metronom/>
+                        <Stopwatch/>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={classes.drawer}
+                    variant="permanent"
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    anchor="left"
+                >
 
-const Menu = (props) => {
-    const { classes } = props;
+                    <Link className={`${classes.toolbar} ${classes.center} ${classes.tollbarHeight}`}
+                          color="primary" size="large" to='/'>
+                        <ListItem button>
+                            <ListItemText primary={'Сначала'}/>
+                        </ListItem>
+                    </Link>
 
-    return (
-        <>
-            <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Сердечно легочная реанимация
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                anchor="left"
-            >
-                <div className={classes.toolbar} />
-                <Divider />
-                <List>
-                    {data.map((text, index) => {
-                        if (text.id >= 1000) return;
-                        return (
-                            <Link color="primary" key={index} size="large" to={`/main/${text.id}`}>
-                                <ListItem button>
-                                    <ListItemText primary={text.title}/>
-                                </ListItem>
-                            </Link>
-                        );
-                    })}
-                </List>
-                <Divider />
-                <Link color="primary" size="large" to='/'>
-                    <ListItem button>
-                        <ListItemText primary={'Сначала'} />
-                    </ListItem>
-                </Link>
-            </Drawer>
-        </>
-    );
+                    <Divider/>
+                    <List>
+                        {data.map((text, index) => {
+                            if (text.id >= 1000) return;
+                            return (
+                                <Link color="primary" key={index} size="large" to={`/main/${text.id}`}>
+                                    <ListItem button>
+                                        <ListItemText primary={text.title}/>
+                                    </ListItem>
+                                </Link>
+                            );
+                        })}
+                    </List>
+                    <Divider/>
+                </Drawer>
+            </>
+        );
+    }
 }
 
 export default withStyles(styles)(Menu);

@@ -63,7 +63,7 @@ class Menu extends React.Component {
                 <AppBar position="fixed" className={classes.appBar}>
                     <Toolbar className={classes.tollbarHeight}>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Сердечно легочная реанимация
+                            Метроном
                         </Typography>
                         <Metronom/>
                         <Stopwatch/>

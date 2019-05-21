@@ -72,9 +72,7 @@ class Information extends React.Component{
 
                 <div mx="auto" className={classes.heroUnit}>
                     <div className={classes.heroContent}>
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            {currentData.title}
-                        </Typography>
+                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom dangerouslySetInnerHTML={{__html: currentData.title}} />
 
                             {
                                 currentData.notification ?
@@ -115,7 +113,7 @@ class Information extends React.Component{
                                         <Grid item>
                                             <Link color="primary" size="large" to={currentData.finish ? '/finish' :`/main/${currentData.nextId}`}>
                                                 <Button variant="contained" color="primary" size="large">
-                                                    {currentData.finish ? 'Конец' : 'Вперед'}
+                                                    Вперед
                                                 </Button>
                                             </Link>
                                         </Grid>

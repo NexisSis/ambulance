@@ -69,7 +69,7 @@ class Logs extends React.Component{
             <>
                 <div className={classes.heroContent}>
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                        Записи из базы данных
+                        Журнал Т-СЛР
                     </Typography>
                     <Link color="primary" size="large" to='/start'>
                         <Button variant="contained" color="primary" size="large">
@@ -81,11 +81,12 @@ class Logs extends React.Component{
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">Время начала</TableCell>
+                                <TableCell align="center">Дата и Время приема вызова</TableCell>
                                 <TableCell align="center">Время подтверждения адреса</TableCell>
+                                <TableCell align="center">Время подтверждения остановки сердца/дыхания</TableCell>
                                 <TableCell align="center">Возраст</TableCell>
-                                <TableCell align="center">Тип компрессии</TableCell>
-                                <TableCell align="center">Время начала компрессии</TableCell>
+                                <TableCell align="center">Тип Т-СЛР</TableCell>
+                                <TableCell align="center">Время начала компрессий</TableCell>
                                 <TableCell align="center">Время окончания работы алгоритма</TableCell>
                             </TableRow>
                         </TableHead>
@@ -95,6 +96,7 @@ class Logs extends React.Component{
                                     {console.log(row)}
                                     <TableCell align="center">{row.startTime}</TableCell>
                                     <TableCell align="center">{row.acceptAddress}</TableCell>
+                                    <TableCell align="center">{row.stopHeart}</TableCell>
                                     <TableCell align="center">{row.age}</TableCell>
                                     <TableCell align="center">{row.compressionsType}</TableCell>
                                     <TableCell align="center">{row.compressionTime}</TableCell>

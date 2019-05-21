@@ -27,6 +27,7 @@ class Main extends React.Component{
                      dbHandlerAddress={this.props.dbHandlerAddress}
                      dbHandlerAge={this.props.dbHandlerAge}
                      dbHandlerCompression={this.props.dbHandlerCompression}
+                     dbHandlerStopHeart={this.props.dbHandlerStopHeart}
                 />
             </div>
         );

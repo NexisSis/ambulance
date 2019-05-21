@@ -49,14 +49,14 @@ class Metronom extends React.Component {
         return (
             <>
                 <div className={classes.metronomContainer}>
-                    <Button onClick={() => this.setMetronomAudio(120)} variant="contained" color="secondary" size="large">
-                        120
+                    <Button onClick={() => this.setMetronomAudio(100)} variant="contained" color="secondary" size="large">
+                        100
                     </Button>
                     <Button onClick={() => this.setMetronomAudio(110)} variant="contained" color="secondary" size="large">
                         110
                     </Button>
-                    <Button onClick={() => this.setMetronomAudio(100)} variant="contained" color="secondary" size="large">
-                        100
+                    <Button onClick={() => this.setMetronomAudio(120)} variant="contained" color="secondary" size="large">
+                        120
                     </Button>
                 </div>
 

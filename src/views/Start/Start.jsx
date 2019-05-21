@@ -34,11 +34,12 @@ class Start extends React.Component {
                     <div className={classes.heroUnit}>
                         <div className={classes.heroContent}>
                             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                                Вас приветствует асcистент для сердечно-лёгочной реанимации.
+                                Вас приветствует ассистент для
+                                диспетчерского сопровождения СЛР!
                             </Typography>
                             <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                                Тут надо тоже что-то написать, например какое-то краткое описание для чего это нужно, как вариант можно что-то про
-                                безопасность, что-то типо, если вы не уверенны, то не стоит. Но вообще этот текст для демонстрации.
+                                Только для квалифицированных специалистов! <br/>
+                                Авторские права: © Косова Е. А., Уманский Н. Ю., Биркун А. А.
                             </Typography>
                             <div className={classes.heroButtons}>
                                 <Grid container spacing={16} justify="center">
@@ -55,7 +56,7 @@ class Start extends React.Component {
                                     <Grid item>
                                         <Link color="primary" size="large" to='/logs'>
                                             <Button variant="contained" color="primary" size="large">
-                                                Логи
+                                                ЖУРНАЛ
                                             </Button>
                                         </Link>
                                     </Grid>

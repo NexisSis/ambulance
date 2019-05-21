@@ -40,7 +40,7 @@ class Finish extends React.Component {
                     <div className={classes.heroUnit}>
                         <div className={classes.heroContent}>
                             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                                Вы справились! Поздравляю!
+                                Алгоритм завершен
                             </Typography>
                             <Typography variant="h6" align="center" color="textSecondary" paragraph>
                                 Вы можете начать сначала, либо пойти домой и попить чай, ибо вы и так уже много сделали. Тоже просто текст.
@@ -51,6 +51,13 @@ class Finish extends React.Component {
                                         <Link color="primary" size="large" to='/'>
                                             <Button variant="contained" color="primary" size="large">
                                                 Начать сначала
+                                            </Button>
+                                        </Link>
+                                    </Grid>
+                                    <Grid item>
+                                        <Link color="primary" size="large" to='/logs'>
+                                            <Button variant="contained" color="primary" size="large">
+                                                ЖУРНАЛ
                                             </Button>
                                         </Link>
                                     </Grid>

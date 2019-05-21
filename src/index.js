@@ -23,6 +23,7 @@ class App extends React.Component{
             compressionsType: null,
             compressionTime: null,
             finishedTime: null,
+            stopHeart: null
         };
         this.dbHandlerStartTime = this.dbHandlerStartTime.bind(this);
 
@@ -46,6 +47,10 @@ class App extends React.Component{
         this.setState(compressionTime);
     };
 
+    dbHandlerStopHeart = (stopHeart) => {
+        this.setState(stopHeart);
+    };
+
     dbSaveWithFinishedTime = (finishedTime) => {
         console.log("TO DB",Object.assign({}, this.state, finishedTime));
         set(Object.assign({}, this.state, finishedTime));
@@ -63,7 +68,8 @@ class App extends React.Component{
                         />
                         <Route path="/main/-1" exact
                                render={
-                                   (routeProps) => (<Finish {...routeProps} dbSave={this.dbSaveWithFinishedTime} />)
+                                   (routeProps) => (
+                                       <Finish {...routeProps} dbSaveWithFinishedTime={this.dbSaveWithFinishedTime}/>)
                                }
                         />
                         <Route path="/main/:id" exact
@@ -73,6 +79,8 @@ class App extends React.Component{
                                              dbHandlerAddress={this.dbHandlerAddress}
                                              dbHandlerAge={this.dbHandlerAge}
                                              dbHandlerCompression={this.dbHandlerCompression}
+                                             dbHandlerStopHeart={this.dbHandlerStopHeart}
+
                                        />)
                                }
                         />

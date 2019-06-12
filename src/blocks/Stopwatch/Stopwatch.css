@@ -4,6 +4,10 @@
     }
 }
 
+.stopwatch__container {
+    width: 160px;
+}
+
 .stopwatch__headline {
     font-size: 35px;
     line-height: 35px;
@@ -19,7 +23,7 @@
 }
 .stopwatch {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: absolute;
     right: 1%;
     top: 0;
@@ -27,6 +31,7 @@
 .stopwatch__buttons {
     text-align: center;
     width: 100px;
+    margin-top: 12px;
  }
 
 .stopwatch__start,
@@ -43,14 +48,14 @@
 
 .stopwatch__face {
     background: url('clock-bg.png');
-    background-size: 82px 82px;
+    background-size: 164px 164px;
     background-position-x: 0px;
     border: 1px solid black;
     border-radius: 50%;
-    height: 82px;
+    height: 164px;
     position: relative;
     text-align: center;
-    width: 82px;
+    width: 164px;
     box-sizing: content-box;
  }
 .stopwatch__hand-wrap {

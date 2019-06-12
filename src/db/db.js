@@ -53,6 +53,16 @@ export function set(file){
     });
 }
 
+export function setByKey(file,key){
+    connectDB(function(db){
+        var request = db.transaction([storeName], "readwrite").objectStore(storeName).put(file, key);
+        request.onerror = logerr;
+        request.onsuccess = function(){
+            return request.result;
+        }
+    });
+}
+
 export function del(file){
     connectDB(function(db){
         var request = db.transaction([storeName], "readwrite").objectStore(storeName).delete(file);

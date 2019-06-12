@@ -20,12 +20,11 @@ class Main extends React.Component{
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
-                <Menu/>
+            <div className={classes.root} >
+                <Menu id={this.props.match.params.id}/>
                 <Information id={this.props.match.params.id}
                      dbHandlerStartTime={this.props.dbHandlerStartTime}
                      dbHandlerAddress={this.props.dbHandlerAddress}
-                     dbHandlerAge={this.props.dbHandlerAge}
                      dbHandlerCompression={this.props.dbHandlerCompression}
                      dbHandlerStopHeart={this.props.dbHandlerStopHeart}
                 />

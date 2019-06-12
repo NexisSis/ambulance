@@ -11,35 +11,31 @@ import Main from "./views/Main/Main";
 import Finish from "./views/Finish/Finish";
 import Notfound from "./views/Notfound/Notfound";
 import Logs from "./views/Logs/Logs";
-import { set } from './db/db';
+import { set, setByKey, get } from './db/db';
 
 class App extends React.Component{
     constructor(props) {
         super(props);
+        // default value
         this.state = {
             startTime: null,
             acceptAddress: null,
-            age: null,
             compressionsType: null,
             compressionTime: null,
             finishedTime: null,
-            stopHeart: null
+            stopHeart: null,
+            acceptDelay: 'Задержки нет',
+            TLSRDelay: 'Задержки нет',
         };
-        this.dbHandlerStartTime = this.dbHandlerStartTime.bind(this);
 
     }
 
     dbHandlerStartTime = (startTime) => {
         this.setState(startTime);
-
     };
 
     dbHandlerAddress = (acceptAddress) => {
         this.setState(acceptAddress);
-    };
-
-    dbHandlerAge = (age) => {
-        this.setState( age );
     };
 
     dbHandlerCompression = (compressionsType,compressionTime) => {
@@ -51,9 +47,9 @@ class App extends React.Component{
         this.setState(stopHeart);
     };
 
-    dbSaveWithFinishedTime = (finishedTime) => {
-        console.log("TO DB",Object.assign({}, this.state, finishedTime));
-        set(Object.assign({}, this.state, finishedTime));
+    dbSave = (data) => {
+        console.log("TO DB",Object.assign({}, this.state, data));
+        set(Object.assign({}, this.state, data));
     };
 
     render() {
@@ -69,7 +65,9 @@ class App extends React.Component{
                         <Route path="/main/-1" exact
                                render={
                                    (routeProps) => (
-                                       <Finish {...routeProps} dbSaveWithFinishedTime={this.dbSaveWithFinishedTime}/>)
+                                       <Finish {...routeProps}
+                                               dbSave={this.dbSave}
+                                       />)
                                }
                         />
                         <Route path="/main/:id" exact
@@ -77,7 +75,6 @@ class App extends React.Component{
                                    (routeProps) => (
                                        <Main {...routeProps}
                                              dbHandlerAddress={this.dbHandlerAddress}
-                                             dbHandlerAge={this.dbHandlerAge}
                                              dbHandlerCompression={this.dbHandlerCompression}
                                              dbHandlerStopHeart={this.dbHandlerStopHeart}
 
@@ -87,7 +84,9 @@ class App extends React.Component{
                         <Route path="/finish" exact
                                render={
                                    (routeProps) => (
-                                       <Finish {...routeProps} dbSaveWithFinishedTime={this.dbSaveWithFinishedTime}/>)
+                                       <Finish {...routeProps}
+                                               dbSave={this.dbSave}
+                                       />)
                                }
                         />
                         <Route path="/logs" exact component={Logs}/>

@@ -90,13 +90,18 @@ class Menu extends React.Component {
                         {data.map((text, index) => {
                             if (text.id >= 1000) return;
                             return (
-                                <Link color="primary" key={index} size="large" to={`/main/${text.id}`}>
-                                    <ListItem button>
+                            <Link color="primary" key={index} size="large" to={`/main/${text.id}`}>
+                                    <ListItem selected={text.id === +this.props.id} button>
                                         <ListItemText primary={text.title}/>
                                     </ListItem>
                                 </Link>
                             );
                         })}
+                        <Link color="primary" size="large" to={`/main/-1`}>
+                            <ListItem button>
+                                <ListItemText primary={'Конец'}/>
+                            </ListItem>
+                        </Link>
                     </List>
                     <Divider/>
                 </Drawer>

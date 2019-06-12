@@ -8,7 +8,8 @@ const styles = theme => ({
         display: 'flex',
         width: '250px',
         justifyContent: 'space-between',
-        marginLeft: '15px',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 });
 
@@ -17,9 +18,9 @@ class Metronom extends React.Component {
         super(props);
 
         this.metronom = {
-            100: new Audio('./audio/100.mp3'),
-            110: new Audio('./audio/110.mp3'),
-            120: new Audio('./audio/120.mp3'),
+            100: new Audio('./audio/100.wav'),
+            110: new Audio('./audio/110.wav'),
+            120: new Audio('./audio/120.wav'),
         };
 
         this.metronom["100"].loop = true;

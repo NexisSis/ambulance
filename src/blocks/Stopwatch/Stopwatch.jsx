@@ -63,8 +63,8 @@ class Stopwatch extends React.Component {
 
     render() {
         const startBtn = <button className="stopwatch__start" onClick={this.onStart}>Старт</button>;
-        const stopBtn = <button className="stopwatch__stop" onClick={this.onStop}>Стоп</button>;
         const resetBtn = <button className="stopwatch__reset" onClick={this.onReset}>Обновить</button>;
+        const stopBtn = <button className="stopwatch__stop" onClick={this.onStop}>Стоп</button>;
 
         let timer = new Date(this.state.elapsedTime);
         let timerMinutes = timer.getUTCMinutes().toString().padStart(2, '0');
@@ -82,8 +82,8 @@ class Stopwatch extends React.Component {
             <div className="stopwatch__container">
                 <div className="stopwatch">
                     <div className="stopwatch__buttons">
-                        { resetBtn }
                         { this.state.running ? stopBtn : startBtn }
+                        { resetBtn }
                         <div className="stopwatch__time">{timerTime}</div>
                     </div>
                     <div className="stopwatch__face">

@@ -43,6 +43,7 @@ class Logs extends React.Component{
         this.state = {
             rows: [
                 {
+                    number: 'Нет данных',
                     startTime: 'Нет данных',
                     acceptAddress: 'Нет данных',
                     compressionsType: 'Нет данных',
@@ -82,28 +83,32 @@ class Logs extends React.Component{
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">Дата и Время приема вызова</TableCell>
+                                <TableCell align="center">№ Вызова</TableCell>
+                                <TableCell align="center">Дата приема вызова</TableCell>
+                                <TableCell align="center">Время приема вызова</TableCell>
                                 <TableCell align="center">Время подтверждения адреса</TableCell>
-                                <TableCell align="center">Время подтверждения остановки сердца/дыхания</TableCell>
+                                <TableCell align="center">Время подтверждения <br /> остановки сердца/дыхания</TableCell>
+                                <TableCell align="center">Причины задержки подтверждения</TableCell>
                                 <TableCell align="center">Тип Т-СЛР</TableCell>
                                 <TableCell align="center">Время начала компрессий</TableCell>
-                                <TableCell align="center">Время окончания работы алгоритма</TableCell>
-                                <TableCell align="center">Причины задержки подтверждения</TableCell>
                                 <TableCell align="center">Причины задержки Т-СЛР</TableCell>
+                                <TableCell align="center">Время окончания работы алгоритма</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {this.state.rows.map((row, index) => (
                                 <TableRow key={index}>
                                     {console.log(row)}
-                                    <TableCell align="center">{row.startTime}</TableCell>
+                                    <TableCell align="center">{row.number}</TableCell>
+                                    <TableCell align="center">{row.startTime && row.startTime.toString().split(',')[0]}</TableCell>
+                                    <TableCell align="center">{row.startTime && row.startTime.toString().split(',')[1]}</TableCell>
                                     <TableCell align="center">{row.acceptAddress}</TableCell>
                                     <TableCell align="center">{row.stopHeart}</TableCell>
+                                    <TableCell align="center">{row.acceptDelay}</TableCell>
                                     <TableCell align="center">{row.compressionsType}</TableCell>
                                     <TableCell align="center">{row.compressionTime}</TableCell>
-                                    <TableCell align="center">{row.finishedTime}</TableCell>
-                                    <TableCell align="center">{row.acceptDelay}</TableCell>
                                     <TableCell align="center">{row.TLSRDelay}</TableCell>
+                                    <TableCell align="center">{row.finishedTime}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

@@ -8,7 +8,7 @@ const styles = theme => ({
         display: 'flex',
         width: '250px',
         justifyContent: 'space-between',
-        marginLeft: 'auto',
+        marginLeft: '25px',
         marginRight: 'auto'
     }
 });

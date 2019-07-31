@@ -92,9 +92,10 @@ class Menu extends React.Component {
                             return (
                             <Link color="primary" key={index} size="large" to={`/main/${text.id}`}>
                                     <ListItem selected={text.id === +this.props.id} button>
-                                        <ListItemText primary={text.title}/>
+                                        <ListItemText primary={<Typography  dangerouslySetInnerHTML={{__html: text.title}} />} />
                                     </ListItem>
-                                </Link>
+
+                            </Link>
                             );
                         })}
                         <Link color="primary" size="large" to={`/main/-1`}>

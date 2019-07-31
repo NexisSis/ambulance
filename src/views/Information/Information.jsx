@@ -54,6 +54,7 @@ class Information extends React.Component{
     };
 
     render() {
+        console.log('RESPIRATION IS ', this.state.needRespiration);
         const { classes, id } = this.props;
         const currentData = data.find((el) => el.id === Number(id));
 
@@ -61,8 +62,9 @@ class Information extends React.Component{
             return <Redirect to='/notfound' />
         }
 
-        if (!this.state.needRespiration && id >= 12) {
-            currentData.finish = true;
+        if (!this.state.needRespiration && currentData.id >= 13 && currentData.id < 1000) {
+            console.log('here');
+            return <Redirect to='/main/-1' />
         }
 
         return (
@@ -108,6 +110,7 @@ class Information extends React.Component{
                                         }, this)
                                         : ''
                                 }
+                              {console.log('CURRENT DATA IS', currentData, currentData.nextId, currentData.finish)}
                                 {
                                     currentData.nextId || currentData.finish ?
                                         <Grid item>

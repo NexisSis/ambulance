@@ -37,10 +37,12 @@ class Start extends React.Component {
                                 Вас приветствует ассистент для
                                 диспетчерского сопровождения СЛР!
                             </Typography>
-                            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-                                Только для квалифицированных специалистов! <br/>
-                                Авторские права: © Биркун А. А., Уманский Н. Ю., Косова Е. А.
+                            <Typography variant="h4" align="center" color="textSecondary" paragraph>
+                                Только для квалифицированных специалистов!
                             </Typography>
+                          <Typography variant="h6" align="center" color="textSecondary" paragraph>
+                            Авторские права: © Биркун А. А., Уманский Н. Ю., Косова Е. А., 2019
+                          </Typography>
                             <div className={classes.heroButtons}>
                                 <Grid container spacing={16} justify="center">
                                     <Grid item>

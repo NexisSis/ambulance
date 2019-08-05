@@ -66,11 +66,11 @@ export default [
             },
             {
                 title: 'Нет',
-                nextId: 7
+                nextId: 7,
             },
             {
                 title: 'Не уверен',
-                nextId: 6
+                nextId: 6,
             },
         ],
     },

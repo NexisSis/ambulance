@@ -2,6 +2,7 @@ import React from 'react';
 
 import SimpleModal from '../../blocks/Modal/SimpleModal';
 import data from '../../data/data';
+import bodr from './bodr.gif';
 
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom"
@@ -23,6 +24,9 @@ const styles = theme => ({
     extendedIcon: {
         marginRight: theme.spacing.unit,
     },
+    imgTop: {
+      marginTop: theme.spacing.unit,
+    },
     heroUnit: {
         height: '80vh',
         display: 'flex'
@@ -30,6 +34,7 @@ const styles = theme => ({
     heroContent: {
         maxWidth: 1200,
         margin: 'auto',
+        textAlign: 'center',
     },
     heroButtons: {
         marginTop: theme.spacing.unit * 4,
@@ -95,6 +100,17 @@ class Information extends React.Component{
                                         </Grid>
                                         : ''
                                 }
+                              {
+                                currentData.id === 7 ?
+                                  <Grid item>
+                                    <Link color="primary" size="large" to={`/main/5`}>
+                                      <Button variant="contained" color="primary" size="large">
+                                        Назад
+                                      </Button>
+                                    </Link>
+                                  </Grid>
+                                  : ''
+                              }
                                 {
                                     currentData.actionButtom ?
                                         currentData.actionButtom.map(function(action) {
@@ -124,6 +140,14 @@ class Information extends React.Component{
                                 }
                             </Grid>
                         </div>
+                      {
+                        (currentData.id >= 9 && currentData.id < 1000) && (
+                          <div className={classes.imgTop}>
+                            <img src={bodr} alt="Подбадриваем!" />
+                          </div>
+                        )
+                      }
+
                     </div>
                 </div>
             </main>

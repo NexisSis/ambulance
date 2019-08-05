@@ -87,7 +87,7 @@ class Logs extends React.Component{
                                 <TableCell align="center">Дата приема вызова</TableCell>
                                 <TableCell align="center">Время приема вызова</TableCell>
                                 <TableCell align="center">Время подтверждения адреса</TableCell>
-                                <TableCell align="center">Время подтверждения <br /> остановки сердца/дыхания</TableCell>
+                                <TableCell align="center">Время подтверждения остановки сердца/дыхания</TableCell>
                                 <TableCell align="center">Причины задержки подтверждения</TableCell>
                                 <TableCell align="center">Тип Т-СЛР</TableCell>
                                 <TableCell align="center">Время начала компрессий</TableCell>

@@ -7,6 +7,8 @@ import bodr from './bodr.gif';
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom"
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -38,6 +40,14 @@ const styles = theme => ({
     },
     heroButtons: {
         marginTop: theme.spacing.unit * 4,
+    },
+    dialog: {
+        display: 'flex',
+        justifyContent: 'center',
+        paddingBottom: theme.spacing.unit * 3,
+    },
+    dialogElement: {
+        marginRight: theme.spacing.unit * 2,
     }
 });
 
@@ -47,29 +57,26 @@ class Information extends React.Component{
         super(props);
         this.state = {
             needRespiration: false,
+            openDialog: false,
+            prevPath: '',
         };
     }
+
+
 
     runFunction = (func) => {
         if (func) {
             func.call(this);
-            // Если функция передается в виде строки то расскомментировать нижнюю, закомментировать верхнюю.
-            // Function(func).bind(this)();
         }
     };
 
     render() {
-        console.log('RESPIRATION IS ', this.state.needRespiration);
+        console.log(this.props.location);
         const { classes, id } = this.props;
         const currentData = data.find((el) => el.id === Number(id));
 
         if (!currentData) {
             return <Redirect to='/notfound' />
-        }
-
-        if (!this.state.needRespiration && currentData.id >= 13 && currentData.id < 1000) {
-            console.log('here');
-            return <Redirect to='/main/-1' />
         }
 
         return (
@@ -103,7 +110,7 @@ class Information extends React.Component{
                               {
                                 currentData.id === 7 ?
                                   <Grid item>
-                                    <Link color="primary" size="large" to={`/main/5`}>
+                                    <Link color="primary" size="large" to={this.props.prevPath || `/main/5`}>
                                       <Button variant="contained" color="primary" size="large">
                                         Назад
                                       </Button>
@@ -111,7 +118,17 @@ class Information extends React.Component{
                                   </Grid>
                                   : ''
                               }
-                                {
+
+                              {
+                                (!this.state.needRespiration && currentData.id === 12) && (
+                                  <Grid item>
+                                      <Button onClick={() => this.setState({openDialog: true})} variant="contained" color="secondary" size="large">
+                                        Завершить алгоритм
+                                      </Button>
+                                  </Grid>
+                                )
+                              }
+                              {
                                     currentData.actionButtom ?
                                         currentData.actionButtom.map(function(action) {
                                             return (
@@ -126,9 +143,8 @@ class Information extends React.Component{
                                         }, this)
                                         : ''
                                 }
-                              {console.log('CURRENT DATA IS', currentData, currentData.nextId, currentData.finish)}
                                 {
-                                    currentData.nextId || currentData.finish ?
+                                  !(!this.state.needRespiration && currentData.id === 12) && currentData.nextId || currentData.finish ?
                                         <Grid item>
                                             <Link color="primary" size="large" to={currentData.finish ? '/finish' :`/main/${currentData.nextId}`}>
                                                 <Button variant="contained" color="primary" size="large">
@@ -141,7 +157,7 @@ class Information extends React.Component{
                             </Grid>
                         </div>
                       {
-                        (currentData.id >= 9 && currentData.id < 1000) && (
+                        (currentData.id === 12) && (
                           <div className={classes.imgTop}>
                             <img src={bodr} alt="Подбадриваем!" />
                           </div>
@@ -150,6 +166,19 @@ class Information extends React.Component{
 
                     </div>
                 </div>
+                <Dialog onClose={() => this.setState({openDialog: false})} open={this.state.openDialog}>
+                    <DialogTitle>Вы точно планируете завершить алгоритм?</DialogTitle>
+                    <div className={classes.dialog}>
+                      <Link className={classes.dialogElement} color="primary" size="large" to={`/main/-1`}>
+                        <Button variant="contained" color="primary" size="large">
+                          Да
+                        </Button>
+                      </Link>
+                      <Button onClick={() => this.setState({openDialog: false})} variant="contained" color="primary" size="large">
+                        Нет
+                      </Button>
+                    </div>
+                </Dialog>
             </main>
         );
     }

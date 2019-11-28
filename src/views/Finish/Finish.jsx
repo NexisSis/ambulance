@@ -36,23 +36,36 @@ class Finish extends React.Component {
         this.state = {
             firstSelectValue: 'Задержки нет',
             secondSelectValue: 'Задержки нет',
-            buttonDisabled: true
+            buttonDisabled: true,
+            anotherFirstSelect: '',
+            anotherSecondSelect: '',
         };
     }
 
     saveData = () => {
         this.props.dbSave(Object.assign({}, {
             finishedTime: new Date().toLocaleString("ru"),
-            acceptDelay: this.state.firstSelectValue,
-            TLSRDelay: this.state.secondSelectValue,
+            acceptDelay: this.state.anotherFirstSelect || this.state.firstSelectValue,
+            TLSRDelay: this.state.anotherSecondSelect || this.state.secondSelectValue,
             number: this.state.number,
         }));
         this.setState({buttonDisabled: false});
     }
 
-  handleChange = (event) => {
-    this.setState({number: event.target.value});
-  }
+    handleChange = (event, type) => {
+        if (type === 'number') {
+            this.setState({number: event.target.value});
+        }
+
+        if (type === 'anotherFirstSelect') {
+            this.setState({anotherFirstSelect: event.target.value});
+        }
+
+        if (type === 'anotherSecondSelect') {
+            this.setState({anotherSecondSelect: event.target.value});
+        }
+    }
+
     handleChangeFirstSelect = (event) => {
         this.setState({firstSelectValue: event.target.value});
     }
@@ -80,7 +93,7 @@ class Finish extends React.Component {
                                         id="number"
                                         label="№ Вызова"
                                         value={this.state.number}
-                                        onChange={this.handleChange}
+                                        onChange={e => this.handleChange(e, 'number')}
                                         margin="normal"
                                       />
                                     </FormControl>
@@ -108,7 +121,7 @@ class Finish extends React.Component {
                                     </FormControl>
                                   </Grid>
                                   <Grid item>
-                                    <FormControl >
+                                    <FormControl>
                                       <InputLabel style={{color:'red'}} shrink htmlFor="label-placeholder">
                                         Причины задержки Т-СЛР
                                       </InputLabel>
@@ -133,6 +146,36 @@ class Finish extends React.Component {
                                         <MenuItem value='Другое'>Другое</MenuItem>
                                       </Select>
                                     </FormControl>
+                                  </Grid>
+                                  <Grid item>
+                                    {
+                                      this.state.firstSelectValue === 'Другое' && (
+                                        <FormControl>
+                                          <TextField
+                                            style={{width: 300}}
+                                            id="anotherFirstSelect"
+                                            label="Причина задержки подтверждения"
+                                            value={this.state.anotherFirstSelect}
+                                            onChange={e => this.handleChange(e, 'anotherFirstSelect')}
+                                          />
+                                        </FormControl>
+                                      )
+                                    }
+                                  </Grid>
+                                  <Grid item>
+                                    {
+                                      this.state.secondSelectValue === 'Другое' && (
+                                        <FormControl>
+                                          <TextField
+                                            style={{width: 300}}
+                                            id="anotherFirstSelect"
+                                            label="Причина задержки Т-СЛР"
+                                            value={this.state.anotherSecondSelect}
+                                            onChange={e => this.handleChange(e, 'anotherSecondSelect')}
+                                          />
+                                        </FormControl>
+                                      )
+                                    }
                                   </Grid>
                                 </Grid>
                                </div>

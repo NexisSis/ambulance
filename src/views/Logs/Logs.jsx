@@ -1,4 +1,5 @@
 import React from 'react';
+import ExportToExcel from '../../blocks/ExportToExcel/ExportToExcel';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -33,11 +34,13 @@ const styles = theme => ({
     },
     heroButtons: {
         marginTop: theme.spacing.unit * 4,
-    }
+    },
+    link: {
+        marginRight: 8,
+    },
 });
 
 class Logs extends React.Component{
-
     constructor(props) {
         super(props);
         this.state = {
@@ -65,7 +68,6 @@ class Logs extends React.Component{
 
     render () {
         const {classes} = this.props;
-
         console.log(this.state);
         return (
             <>
@@ -73,11 +75,19 @@ class Logs extends React.Component{
                     <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                         Журнал Т-СЛР
                     </Typography>
-                    <Link color="primary" size="large" to='/start'>
+                    <Link className={classes.link} color="primary" size="large" to='/start'>
                         <Button variant="contained" color="primary" size="large">
                             На главную
                         </Button>
                     </Link>
+                    <ExportToExcel
+                      element={
+                        <Button variant="contained" color="primary" size="large">
+                             Скачать Excel
+                        </Button>
+                      }
+                      dataset={this.state.rows}
+                    />
                 </div>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
